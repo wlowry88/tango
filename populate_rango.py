@@ -2,6 +2,8 @@ import os
 
 def populate():
     python_cat = add_cat('Python')
+    python_cat.views = 128
+    python_cat.likes = 64
 
     add_page(cat=python_cat,
             title="Official Python Tutorial",
@@ -16,6 +18,8 @@ def populate():
             url="http://www.korokithakis.net/tutorials/python/")
 
     django_cat = add_cat("Django")
+    python_cat.views = 64
+    python_cat.likes = 32
 
     add_page(cat=django_cat,
             title="Official Django Tutorial",
@@ -30,6 +34,10 @@ def populate():
             url="http://www.tangowithdjango.com/")
 
     frame_cat = add_cat("Other Frameworks")
+    python_cat.views = 32
+    python_cat.likes = 16
+
+   
 
     add_page(cat=frame_cat,
             title="Bottle",
