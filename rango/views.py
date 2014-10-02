@@ -56,8 +56,11 @@ def add_category(request):
             form = CategoryForm()
 
     return render_to_response('rango/add_category.html', {'form': form}, context) 
+
 def add_page(request, category_name_url):
     context = RequestContext(request)
+
+    category_name = decode_url(category_name_url)
 
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -69,7 +72,7 @@ def add_page(request, category_name_url):
                 cat = Category.objects.get(name=category_name)
                 page.category = cat
             except Category.DoesNotExist:
-                return render_to_response('rango/add_category.html', {}, context)
+                return render_to_response('rango/add_page.html', context_dict, context, context)
             
             page.views = 0
 
@@ -85,3 +88,9 @@ def add_page(request, category_name_url):
             {'category_name_url': category_name_url,
                 'category_name': category_name, 'form': form},
             context)
+
+def encode_url(str):
+    return str.replace(' ', '_')
+
+def decode_url(str):
+    return str.replace('_', ' ')
